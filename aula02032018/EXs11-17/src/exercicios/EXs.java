@@ -19,9 +19,8 @@ public class EXs {
 		
 		//EX12
 		
-		Scanner sc2 = new Scanner(System.in);
 		System.out.println("Digite um número: ");
-		float num1 = sc2.nextFloat();
+		float num1 = sc1.nextFloat();
 		if (num1>1.99 && num1<5.99) {
 			System.out.println("O número está entre 1.99 e 5.99");
 			}
@@ -46,12 +45,10 @@ public class EXs {
 		//EX15
 		
 		ArrayList Nomes = new ArrayList();
-		Scanner s1 = new Scanner(System.in);
 		System.out.println("Digite o primeiro nome: ");
-		String nome1 = s1.nextLine();
-		Scanner s2 = new Scanner(System.in);
+		String nome1 = sc1.nextLine();
 		System.out.println("Digite o segundo nome: ");
-		String nome2 = s2.nextLine();
+		String nome2 = sc1.nextLine();
 		    if(nome1.equals("") || nome2.equals("")){ 
 		    	System.out.println("ERRO");
 		    }
@@ -63,12 +60,10 @@ public class EXs {
 		//EX16 e EX17
 		
 		double area;
-		Scanner scan1 = new Scanner(System.in);
 		System.out.println("Digite o tamanho do lado a: ");
-		double ladoa = scan1.nextDouble();
-		Scanner scan2 = new Scanner(System.in);
+		double ladoa = sc1.nextDouble();
 		System.out.println("Digite o tamanho do lado b: ");
-		double ladob = scan2.nextDouble();
+		double ladob = sc1.nextDouble();
 		area = ladoa * ladob;
 		System.out.println("Lado a = <" +ladoa+ ">\nLado b = <" +ladob+ ">");
 		System.out.println("A área é = <" +area+ ">");
