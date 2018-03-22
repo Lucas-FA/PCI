@@ -5,12 +5,12 @@ public class Animal {
 	private String nome;
 	protected String classe;
 	
-	public void imprime() {
-		System.out.println("O nome do animal é: " + nome);
-	}
-
 	public String getNome() {
 		return nome;
+	}
+	
+	public void imprime() {
+		System.out.println(this.getNome());
 	}
 
 	public void setNome(String nome) {
@@ -18,7 +18,6 @@ public class Animal {
 	}
 	
 	public void falar() {
-		System.out.println("O animal falou");
 		
 	}
 	

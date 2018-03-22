@@ -1,9 +1,9 @@
 package exheranca;
 
-public class BemTeVi extends Ave{
-	@Override
+public class BemTeVi extends Ave {
+	
 	public void falar() {
-		System.out.println("O BemTeVi falou");
+		
 	}
 
 }
