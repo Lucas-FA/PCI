@@ -33,22 +33,22 @@ public class FuncoesMatematicas {
     }
 	
 	public double subtracaoPorcentagem(double num0, double num1) {
-    	double resultado = num0 - (num0 * num1) / 100;
+    	double resultado = num0 - ((num0 * num1) / 100);
     	return resultado;
     }
 	
 	public double adicaoPorcentagem(double num0, double num1) {
-    	double resultado = num0 + (num0 * num1) / 100;
-    	return resultado;
-    }
-	
-	public double porcentagem(double num0, double num1) {
-    	double resultado = num0 * num1 / 100;
+    	double resultado = num0 + ((num0 * num1) / 100);
     	return resultado;
     }
 	
 	public double multiplicacao(double num0, double num1) {
     	double resultado = num0 * num1;
+    	return resultado;
+    }
+	
+	public double reciproco(double num0) {
+    	double resultado = 1 / num0;
     	return resultado;
     }
 	

@@ -50,7 +50,7 @@ public class Calculadora extends JFrame {
 	JButton btnMais = new JButton("+");
 
 	FuncoesMatematicas mat = new FuncoesMatematicas();
-	String sinal = null, sinal0 = null;
+	String sinal = null, sinal0 = null, virgula = null;
 	double valor0 = 0, valor1 = 0, valorM = 0;
 	String str, str0;
 	
@@ -103,6 +103,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "mmais";
+				virgula = null;
 			}
 		});
 		
@@ -113,6 +114,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "mmenos";
+				virgula = null;
 			}
 		});
 		
@@ -139,7 +141,11 @@ public class Calculadora extends JFrame {
 		paine.add(btnC);
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sinal = null;
+				sinal0 = null;
+				virgula = null;
 				valor0 = 0;
+				valor1 = 0;
 				txtVisor.setText("0");
 			}
 		});
@@ -148,17 +154,8 @@ public class Calculadora extends JFrame {
 		paine.add(btnMaisMenos);
 		btnMaisMenos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (sinal == "negativo") {
-					txtVisor.setText(txtVisor.getText().replace("-", " "));
-					sinal = "positivo";
-				}
-				else if (sinal == "positivo") {
-					txtVisor.setText(txtVisor.getText().replace(" ", "-"));
-					sinal = "negativo";
-				}
-				else
-					txtVisor.setText("-" + txtVisor.getText());
-				sinal = "negativo";
+				valor0 = Double.parseDouble(txtVisor.getText()) * -1;
+				txtVisor.setText(valor0 + "");
 			}
 		});
 		btnRaizQuadrada.setBounds(150, 100, 30, 25);
@@ -168,6 +165,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				valor0 = Double.parseDouble(txtVisor.getText());
 				txtVisor.setText(mat.raizQuadrada(valor0) + "");
+				virgula = null;
 			}
 		});
 		
@@ -215,6 +213,8 @@ public class Calculadora extends JFrame {
 		paine.add(btnDivisao);
 		btnDivisao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				virgula = null;
+				sinal0 = "0";
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "divisão";
 				txtVisor.setText("0");
@@ -227,6 +227,7 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				valor1 = Double.parseDouble(txtVisor.getText());
 				sinal0 = "porcentagem";
+				virgula = null;
 			}
 		});
 		btnQuatro.setBounds(10, 160, 30, 25);
@@ -273,6 +274,8 @@ public class Calculadora extends JFrame {
 		paine.add(btnMultiplicacao);
 		btnMultiplicacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				virgula = null;
+				sinal0 = "0";
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "multiplicação";
 				txtVisor.setText("0");
@@ -281,6 +284,13 @@ public class Calculadora extends JFrame {
 		btn1barrax.setBounds(150, 160, 30, 25);
 		btn1barrax.setMargin(new Insets(1,1,1,1));
 		paine.add(btn1barrax);
+		btn1barrax.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor0 = Double.parseDouble(txtVisor.getText());
+				txtVisor.setText(mat.reciproco(valor0) + "");
+				virgula = null;
+			}
+		});
 		
 		btnUm.setBounds(10, 190, 30, 25);
 		btnUm.setMargin(new Insets(1,1,1,1));
@@ -326,9 +336,12 @@ public class Calculadora extends JFrame {
 		paine.add(btnMenos);
 		btnMenos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				virgula = null;
+				sinal0 = "0";
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "subtração";
 				txtVisor.setText("0");
+				
 			}
 		});
 		btnIgual.setBounds(150, 190, 30, 55);
@@ -350,25 +363,26 @@ public class Calculadora extends JFrame {
 					txtVisor.setText(mat.subtracao(valor0, valor1) + "");
 				}
 				
-				else if (sinal.equals("adição")) {
+				else if (sinal.equals("adição") && sinal0.equals("0")) {
 					txtVisor.setText(mat.adicao(valor0, valor1) + "");
 				}
 				
 				else if (sinal.equals("divisão") && sinal0.equals("porcentagem")) {
-					txtVisor.setText(mat.porcentagem(valor0, valor1) + "");
+					txtVisor.setText(mat.divisaoPorcentagem(valor0, valor1) + "");
 				}
 				
 				else if (sinal.equals("multiplicação") && sinal0.equals("porcentagem")) {
-					txtVisor.setText(mat.porcentagem(valor0, valor1) + "");
+					txtVisor.setText(mat.multiplicacaoPorcentagem(valor0, valor1) + "");
 				}
 				
 				else if (sinal.equals("subtração") && sinal0.equals("porcentagem")) {
-					txtVisor.setText(mat.porcentagem(valor0, valor1) + "");
+					txtVisor.setText(mat.subtracaoPorcentagem(valor0, valor1) + "");
 				}
 				
 				else if (sinal.equals("adição") && sinal0.equals("porcentagem")) {
-					txtVisor.setText(mat.porcentagem(valor0, valor1) + "");
-				}	
+					txtVisor.setText(mat.adicaoPorcentagem(valor0, valor1) + "");
+				}
+				virgula = null;
 			}
 		});
 		
@@ -390,12 +404,12 @@ public class Calculadora extends JFrame {
 		paine.add(btnVirgula);
 		btnVirgula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (sinal == "virgula") {
+				if (virgula == "virgula") {
 					txtVisor.setText(txtVisor.getText());
 				}
 				else
 					txtVisor.setText(txtVisor.getText() + ".");
-				sinal = "virgula";
+				virgula = "virgula";
 			}
 		});
 		
@@ -404,9 +418,12 @@ public class Calculadora extends JFrame {
 		paine.add(btnMais);
 		btnMais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				virgula = null;
+				sinal0 = "0";
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "adição";
 				txtVisor.setText("0");
+				
 			}
 		});
 		
