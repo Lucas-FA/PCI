@@ -79,11 +79,11 @@ public class Calculadora extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				txtVisor.setText(valorM + "");
 				if (sinal.equals("mmais")) {
-					valorM = Double.parseDouble(mat.mAdicao(valorM, valor0) + "");
+					valorM = Double.parseDouble(mat.adicao(valorM, valor0) + "");
 					txtVisor.setText(valorM + "");
 				}
 				else if(sinal.equals("mmenos")) {
-					valorM = Double.parseDouble(mat.mSubtracao(valorM, valor0) + "");
+					valorM = Double.parseDouble(mat.subtracao(valorM, valor0) + "");
 					txtVisor.setText(valorM + "");
 				}	
 			}
@@ -412,7 +412,6 @@ public class Calculadora extends JFrame {
 				virgula = "virgula";
 			}
 		});
-		
 		btnMais.setBounds(115, 220, 30, 25);
 		btnMais.setMargin(new Insets(1,1,1,1));
 		paine.add(btnMais);
@@ -423,7 +422,6 @@ public class Calculadora extends JFrame {
 				valor0 = Double.parseDouble(txtVisor.getText());
 				sinal = "adição";
 				txtVisor.setText("0");
-				
 			}
 		});
 		
